@@ -138,7 +138,7 @@
           <p>Get in touch</p>
         </header>
         <div class="box">
-          <form method="post" action="#">
+          <form method="post" action="mail.php">
             <div class="fields">
               <div class="field half">
                 <input type="text" name="name" placeholder="Name" />
@@ -154,9 +154,38 @@
                 ></textarea>
               </div>
             </div>
-            <ul class="actions special">
-              <li><input type="submit" value="Send Message" /></li>
-            </ul>
+            <div>
+              <form method="post" onsubmit="return submitUserForm();">
+                <div
+                  class="g-recaptcha"
+                  data-sitekey="6Lfs-NIZAAAAAC2YyD8ISvmQ6F2zky1_DUu3_kPG"
+                  data-callback="verifyCaptcha"
+                ></div>
+                <div id="g-recaptcha-error"></div></br>
+                <ul class="actions special">
+                  <li><input type="submit" value="Send Message" /></li>
+                  <li><input type="reset" value="    Clear all    " /></li>
+                </ul>
+              </form>
+              <script src="https://www.google.com/recaptcha/api.js"></script>
+              <script>
+                function submitUserForm() {
+                  var response = grecaptcha.getResponse();
+                  console.log(response.length);
+                  if (response.length == 0) {
+                    document.getElementById("g-recaptcha-error").innerHTML =
+                      '<span style="color:red;">This field is required.</span>';
+                    return false;
+                  }
+                  return true;
+                }
+
+                function verifyCaptcha() {
+                  console.log("verified");
+                  document.getElementById("g-recaptcha-error").innerHTML = "";
+                }
+              </script>
+            </div>
           </form>
         </div>
       </div>
