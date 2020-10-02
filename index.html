@@ -155,36 +155,15 @@
               </div>
             </div>
             <div>
-              <form method="post" onsubmit="return submitUserForm();">
-                <div
-                  class="g-recaptcha"
-                  data-sitekey="6Lfs-NIZAAAAAC2YyD8ISvmQ6F2zky1_DUu3_kPG"
-                  data-callback="verifyCaptcha"
-                ></div>
-                <div id="g-recaptcha-error"></div></br>
-                <ul class="actions special">
-                  <li><input type="submit" value="Send Message" /></li>
-                  <li><input type="reset" value="    Clear all    " /></li>
-                </ul>
-              </form>
+              <div
+                class="g-recaptcha"
+                data-sitekey="6Lfs-NIZAAAAAC2YyD8ISvmQ6F2zky1_DUu3_kPG"
+              ></div>
+              <ul class="actions special">
+                <li><input type="submit" value="Send Message" /></li>
+                <li><input type="reset" value="    Clear all    " /></li>
+              </ul>
               <script src="https://www.google.com/recaptcha/api.js"></script>
-              <script>
-                function submitUserForm() {
-                  var response = grecaptcha.getResponse();
-                  console.log(response.length);
-                  if (response.length == 0) {
-                    document.getElementById("g-recaptcha-error").innerHTML =
-                      '<span style="color:red;">This field is required.</span>';
-                    return false;
-                  }
-                  return true;
-                }
-
-                function verifyCaptcha() {
-                  console.log('verified');
-                  document.getElementById("g-recaptcha-error").innerHTML = "";
-                }
-              </script>
             </div>
           </form>
         </div>
